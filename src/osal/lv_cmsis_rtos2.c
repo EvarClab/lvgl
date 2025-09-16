@@ -74,7 +74,7 @@ lv_result_t lv_thread_init(lv_thread_t * thread, const char * const name, lv_thr
 
 lv_result_t lv_thread_delete(lv_thread_t * thread)
 {
-    osThreadDetach(*thread);
+    // osThreadDetach(*thread);
     osStatus_t status = osThreadTerminate(*thread);
     if(status == osOK) {
         return LV_RESULT_OK;
@@ -86,7 +86,7 @@ lv_result_t lv_mutex_init(lv_mutex_t * mutex)
 {
     const osMutexAttr_t Thread_Mutex_attr = {
         "LVGLMutex",
-        osMutexRecursive | osMutexPrioInherit | osMutexRobust,
+        osMutexRecursive | osMutexPrioInherit,
     };
 
     *mutex = osMutexNew(&Thread_Mutex_attr);

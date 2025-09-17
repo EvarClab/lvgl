@@ -157,7 +157,7 @@ lv_result_t lv_thread_sync_wait(lv_thread_sync_t * sync)
 {
     uint32_t ret = osEventFlagsWait(*sync, 0x01, osFlagsWaitAny, osWaitForever);
     if(ret & (1 << 31)) {
-        LV_LOG_WARN("Error: failed to wait a cmsis-rtos2 EventFlag %d", ret);
+        LV_LOG_WARN("Error: failed to wait a cmsis-rtos2 EventFlag %ld", ret);
         return LV_RESULT_INVALID;
     }
 
@@ -168,7 +168,7 @@ lv_result_t lv_thread_sync_signal(lv_thread_sync_t * sync)
 {
     uint32_t ret = osEventFlagsSet(*sync, 0x01);
     if(ret & (1 << 31)) {
-        LV_LOG_WARN("Error: failed to set a cmsis-rtos2 EventFlag %d", ret);
+        LV_LOG_WARN("Error: failed to set a cmsis-rtos2 EventFlag %ld", ret);
         return LV_RESULT_INVALID;
     }
 
